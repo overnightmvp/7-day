@@ -27,6 +27,24 @@ CREATE TABLE bookings (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Create booking inquiries table (for landing page inquiries)
+CREATE TABLE booking_inquiries (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    work_email TEXT NOT NULL,
+    company_name TEXT NOT NULL,
+    contact_name TEXT NOT NULL,
+    phone TEXT,
+    team_size INTEGER NOT NULL CHECK (team_size > 0),
+    preferred_date DATE NOT NULL,
+    alternate_date DATE,
+    special_requests TEXT,
+    experience_id TEXT NOT NULL,
+    experience_title TEXT NOT NULL,
+    estimated_cost DECIMAL(10,2) NOT NULL,
+    status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'contacted', 'converted', 'lost')),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- Create indexes for better performance
 CREATE INDEX idx_users_company_id ON users(company_id);
 CREATE INDEX idx_users_email ON users(email);

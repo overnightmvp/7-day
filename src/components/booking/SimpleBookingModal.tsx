@@ -94,11 +94,45 @@ export function SimpleBookingModal({ experience, isOpen, onClose, onSuccess }: S
 
     setIsSubmitting(true)
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      // Import Supabase at the top of file if not already imported
+      const { supabase } = await import('@/lib/supabase')
+      
+      // Create booking inquiry in database
+      const { data, error } = await supabase
+        .from('booking_inquiries')
+        .insert({
+          work_email: formData.workEmail,
+          company_name: formData.companyName,
+          contact_name: formData.contactName,
+          phone: formData.phone,
+          team_size: formData.teamSize,
+          preferred_date: formData.preferredDate,
+          alternate_date: formData.alternateDate,
+          special_requests: formData.specialRequests,
+          experience_id: experience.id,
+          experience_title: experience.title,
+          estimated_cost: estimatedCost,
+          status: 'pending'
+        })
+        .select()
+        .single()
+
+      if (error) {
+        console.error('Booking submission error:', error)
+        alert('Sorry, there was an issue submitting your booking. Please try again or contact us directly.')
+        return
+      }
+
+      // Success - call the success handler
       onSuccess(formData)
+      
+    } catch (error) {
+      console.error('Unexpected error:', error)
+      alert('Sorry, there was an unexpected issue. Please try again.')
+    } finally {
       setIsSubmitting(false)
-    }, 1500)
+    }
   }
 
   const updateFormData = (field: keyof BookingFormData, value: string | number) => {
