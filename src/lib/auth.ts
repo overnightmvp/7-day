@@ -211,7 +211,7 @@ export async function getCurrentUser(): Promise<User | null> {
   if (!userEmail) return null
   
   const result = await signInUser(userEmail)
-  return result.success ? result.user : null
+  return result.success ? (result.user || null) : null
 }
 
 /**
