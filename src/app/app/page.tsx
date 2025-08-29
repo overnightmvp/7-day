@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { getAllExperiences, getExperienceById, type Experience } from '@/lib/experiences'
-import { supabase } from '@/lib/supabase'
+import { getAllExperiences, getExperienceById } from '@/lib/experiences'
+import { supabase, type Experience } from '@/lib/supabase'
 
 export default function EmployeeApp() {
   const [experiences] = useState<Experience[]>(getAllExperiences())
@@ -87,10 +87,11 @@ export default function EmployeeApp() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {experiences.map((experience) => (
               <div key={experience.id} className="bg-white rounded-lg shadow overflow-hidden">
-                <img
-                  src={experience.image_url}
-                  alt={experience.title}
-                  className="w-full h-48 object-cover"
+                <div 
+                  className="w-full h-48 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${experience.image_url})` }}
+                  role="img"
+                  aria-label={experience.title}
                 />
                 <div className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -154,10 +155,11 @@ export default function EmployeeApp() {
               </div>
 
               <div className="mb-6">
-                <img
-                  src={selectedExperience.image_url}
-                  alt={selectedExperience.title}
-                  className="w-full h-48 object-cover rounded-lg"
+                <div 
+                  className="w-full h-48 bg-cover bg-center rounded-lg"
+                  style={{ backgroundImage: `url(${selectedExperience.image_url})` }}
+                  role="img"
+                  aria-label={selectedExperience.title}
                 />
                 <div className="mt-4">
                   <p className="text-gray-600">{selectedExperience.location}</p>

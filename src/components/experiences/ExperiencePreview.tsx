@@ -44,10 +44,11 @@ export function ExperiencePreview({ showBookingFlow = false, limit = 3 }: Experi
           >
             {/* Image */}
             <div className="relative h-48 bg-neutral-200">
-              <img
-                src={experience.image_url}
-                alt={experience.title}
-                className="w-full h-full object-cover"
+              <div 
+                className="w-full h-full bg-cover bg-center"
+                style={{ backgroundImage: `url(${experience.image_url})` }}
+                role="img"
+                aria-label={experience.title}
               />
               <div className="absolute top-3 right-3">
                 <Badge variant="outline" className="bg-white/90 backdrop-blur-sm">

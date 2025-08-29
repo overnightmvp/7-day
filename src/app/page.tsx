@@ -156,10 +156,10 @@ export default function Home() {
                 <div>
                   <div className="font-semibold text-neutral-900 mb-2">Sarah Chen, HR Manager</div>
                   <div className="text-neutral-600 italic">
-                    "I spent 3 weeks planning our quarterly team event. Researched venues across Sydney, 
+                    &quot;I spent 3 weeks planning our quarterly team event. Researched venues across Sydney, 
                     negotiated prices, coordinated with 15 different vendors. The result? 
-                    Half the team didn't show up, and those who did were on their phones. 
-                    We spent $12,000 on an event nobody talks about."
+                    Half the team didn&apos;t show up, and those who did were on their phones. 
+                    We spent $12,000 on an event nobody talks about.&quot;
                   </div>
                 </div>
               </div>
@@ -198,7 +198,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-lg font-semibold text-neutral-900 mb-2">Budget Waste</h3>
                 <p className="text-neutral-600 text-sm">
-                  No way to measure ROI. Money spent on events that don't build culture or improve retention.
+                  No way to measure ROI. Money spent on events that don&apos;t build culture or improve retention.
                 </p>
               </div>
             </div>
@@ -393,7 +393,7 @@ export default function Home() {
                 50-200 employees, need scalable team event solutions that work across remote and hybrid teams.
               </p>
               <div className="mt-4 text-xs text-neutral-500">
-                "Startups to Series B companies"
+                &quot;Startups to Series B companies&quot;
               </div>
             </div>
             
@@ -408,7 +408,7 @@ export default function Home() {
                 Organizations that compete on culture and employee experience, not just salary and equity.
               </p>
               <div className="mt-4 text-xs text-neutral-500">
-                "Culture-driven organizations"
+                &quot;Culture-driven organizations&quot;
               </div>
             </div>
             
@@ -423,7 +423,7 @@ export default function Home() {
                 HR teams that want maximum impact with minimal administrative overhead and clear ROI metrics.
               </p>
               <div className="mt-4 text-xs text-neutral-500">
-                "Modern HR departments"
+                &quot;Modern HR departments&quot;
               </div>
             </div>
           </div>

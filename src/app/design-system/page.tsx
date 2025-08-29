@@ -5,19 +5,18 @@ import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardConten
 import { designTokens } from '@/lib/design-tokens'
 
 export default function DesignSystemPage() {
-  const [activeSection, setActiveSection] = useState('overview')
+  const [activeSection, setActiveSection] = useState('documentation')
 
   const sections = [
-    { id: 'overview', label: 'Overview' },
+    { id: 'documentation', label: 'Documentation' },
     { id: 'colors', label: 'Colors' },
     { id: 'typography', label: 'Typography' },
     { id: 'components', label: 'Components' },
     { id: 'spacing', label: 'Spacing' },
-    { id: 'usage', label: 'Usage Guidelines' },
-    { id: 'docs', label: 'Documentation' }
+    { id: 'usage', label: 'Usage Guidelines' }
   ]
 
-  const ColorPalette = ({ colors, title }: { colors: any, title: string }) => (
+  const ColorPalette = ({ colors, title }: { colors: Record<string, string>, title: string }) => (
     <div className="mb-8">
       <h3 className="text-lg font-semibold mb-4">{title}</h3>
       <div className="grid grid-cols-5 gap-4">
@@ -78,67 +77,106 @@ export default function DesignSystemPage() {
           <div className="flex-1">
             <div className="space-y-8">
               
-              {/* Overview */}
-              {activeSection === 'overview' && (
+              {/* Documentation */}
+              {activeSection === 'documentation' && (
                 <div>
-                  <h2 className="text-2xl font-bold mb-4">Design System Overview</h2>
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <h2 className="text-2xl font-bold mb-6">Component Documentation</h2>
+                  
+                  <div className="grid md:grid-cols-2 gap-6 mb-8">
                     <Card>
                       <CardHeader>
-                        <CardTitle>Foundation</CardTitle>
-                        <CardDescription>Core design tokens and principles</CardDescription>
+                        <CardTitle>UI Components</CardTitle>
+                        <CardDescription>Complete component documentation with examples</CardDescription>
                       </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-2 text-sm">
-                          <li>• 8-color comprehensive palette</li>
-                          <li>• 4-scale typography system</li>
-                          <li>• 8px grid-based spacing</li>
-                          <li>• Consistent border radius & shadows</li>
-                        </ul>
+                      <CardContent className="space-y-3">
+                        <div className="space-y-2">
+                          <a 
+                            href="/design-system/docs/button.md" 
+                            target="_blank"
+                            className="block p-3 bg-neutral-50 rounded hover:bg-neutral-100 transition-colors"
+                          >
+                            <div className="font-medium">Button</div>
+                            <div className="text-sm text-neutral-600">Variants, sizes, states, icons</div>
+                          </a>
+                          <a 
+                            href="/design-system/docs/input.md" 
+                            target="_blank"
+                            className="block p-3 bg-neutral-50 rounded hover:bg-neutral-100 transition-colors"
+                          >
+                            <div className="font-medium">Input</div>
+                            <div className="text-sm text-neutral-600">Forms, validation, labels, icons</div>
+                          </a>
+                          <a 
+                            href="/design-system/docs/card.md" 
+                            target="_blank"
+                            className="block p-3 bg-neutral-50 rounded hover:bg-neutral-100 transition-colors"
+                          >
+                            <div className="font-medium">Card</div>
+                            <div className="text-sm text-neutral-600">Containers, headers, content, footers</div>
+                          </a>
+                          <a 
+                            href="/design-system/docs/badge.md" 
+                            target="_blank"
+                            className="block p-3 bg-neutral-50 rounded hover:bg-neutral-100 transition-colors"
+                          >
+                            <div className="font-medium">Badge</div>
+                            <div className="text-sm text-neutral-600">Status indicators, labels, icons</div>
+                          </a>
+                        </div>
                       </CardContent>
                     </Card>
 
                     <Card>
                       <CardHeader>
-                        <CardTitle>Components</CardTitle>
-                        <CardDescription>Reusable UI building blocks</CardDescription>
+                        <CardTitle>Quick Start</CardTitle>
+                        <CardDescription>Get started with the design system</CardDescription>
                       </CardHeader>
                       <CardContent>
-                        <ul className="space-y-2 text-sm">
-                          <li>• Button variants with states</li>
-                          <li>• Form inputs with validation</li>
-                          <li>• Card layouts and content</li>
-                          <li>• Badge and status indicators</li>
-                        </ul>
+                        <div className="bg-neutral-100 p-4 rounded font-mono text-sm space-y-2">
+                          <div className="text-green-600">{`// Import any component`}</div>
+                          <div>{`import { Button, Input, Card, Badge } from '@/components/ui'`}</div>
+                          <br />
+                          <div className="text-green-600">{`// Use immediately`}</div>
+                          <div>{`<Button variant="primary">Get Started</Button>`}</div>
+                        </div>
                       </CardContent>
                     </Card>
                   </div>
 
-                  <div className="mt-8">
-                    <h3 className="text-lg font-semibold mb-4">Design Principles</h3>
-                    <div className="bg-blue-50 p-6 rounded-lg">
-                      <div className="grid md:grid-cols-3 gap-6">
-                        <div>
-                          <h4 className="font-semibold text-blue-900 mb-2">Effortless</h4>
-                          <p className="text-sm text-blue-700">
-                            Intuitive interfaces that minimize cognitive load and friction
-                          </p>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-blue-900 mb-2">Human-Centric</h4>
-                          <p className="text-sm text-blue-700">
-                            Clear typography, natural spacing, and approachable design
-                          </p>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-blue-900 mb-2">Premium Quality</h4>
-                          <p className="text-sm text-blue-700">
-                            High-quality imagery, subtle animations, and polished interactions
-                          </p>
-                        </div>
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Product Documentation</CardTitle>
+                      <CardDescription>Business requirements and development history</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid md:grid-cols-3 gap-4">
+                        <a 
+                          href="/design-system/docs/prd-003-persona-map.md" 
+                          target="_blank"
+                          className="block p-4 bg-blue-50 rounded hover:bg-blue-100 transition-colors"
+                        >
+                          <div className="font-medium text-blue-900">Persona Map</div>
+                          <div className="text-sm text-blue-700">User research & personas</div>
+                        </a>
+                        <a 
+                          href="/design-system/docs/prompts-backlog.md" 
+                          target="_blank"
+                          className="block p-4 bg-green-50 rounded hover:bg-green-100 transition-colors"
+                        >
+                          <div className="font-medium text-green-900">Development History</div>
+                          <div className="text-sm text-green-700">Complete session backlog</div>
+                        </a>
+                        <a 
+                          href="/design-system/docs/user-flow-documentation.md" 
+                          target="_blank"
+                          className="block p-4 bg-purple-50 rounded hover:bg-purple-100 transition-colors"
+                        >
+                          <div className="font-medium text-purple-900">User Flows</div>
+                          <div className="text-sm text-purple-700">Interaction patterns</div>
+                        </a>
                       </div>
-                    </div>
-                  </div>
+                    </CardContent>
+                  </Card>
                 </div>
               )}
 
@@ -473,12 +511,12 @@ export default function DesignSystemPage() {
                       </CardHeader>
                       <CardContent>
                         <div className="bg-neutral-100 p-4 rounded-lg font-mono text-sm">
-                          <div className="text-green-600">// Import components</div>
-                          <div>import &#123; Button, Input, Card &#125; from '@/components/ui'</div>
+                          <div className="text-green-600">{`// Import components`}</div>
+                          <div>{`import { Button, Input, Card } from '@/components/ui'`}</div>
                           <br />
-                          <div className="text-green-600">// Use with proper variants</div>
-                          <div>&lt;Button variant="primary" size="lg"&gt;Get Started&lt;/Button&gt;</div>
-                          <div>&lt;Input label="Email" type="email" /&gt;</div>
+                          <div className="text-green-600">{`// Use with proper variants`}</div>
+                          <div>{`<Button variant="primary" size="lg">Get Started</Button>`}</div>
+                          <div>{`<Input label="Email" type="email" />`}</div>
                         </div>
                       </CardContent>
                     </Card>
@@ -502,135 +540,6 @@ export default function DesignSystemPage() {
                 </div>
               )}
 
-              {/* Documentation */}
-              {activeSection === 'docs' && (
-                <div>
-                  <h2 className="text-2xl font-bold mb-6">Product Documentation</h2>
-                  
-                  <div className="grid md:grid-cols-2 gap-6 mb-8">
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Business Model & Architecture (BMAD)</CardTitle>
-                        <CardDescription>Updated for Australian marketplace reality</CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-sm text-neutral-600 mb-4">
-                          Complete business requirements, API design, and success metrics reflecting our current Australian corporate experience marketplace.
-                        </p>
-                        <Button variant="outline" size="sm">
-                          <a href="/design-system/docs/bmad-updated.md" target="_blank" className="flex items-center gap-2">
-                            📋 View BMAD Documentation
-                          </a>
-                        </Button>
-                      </CardContent>
-                    </Card>
-
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Development Session History</CardTitle>
-                        <CardDescription>Complete backlog of prompts and implementations</CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-sm text-neutral-600 mb-4">
-                          Chronological record of all development sessions, user requests, and feature implementations from MVP to current state.
-                        </p>
-                        <Button variant="outline" size="sm">
-                          <a href="/design-system/docs/prompts-backlog.md" target="_blank" className="flex items-center gap-2">
-                            🔄 View Development History
-                          </a>
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-lg font-semibold mb-4">Product Requirements Documents (PRDs)</h3>
-                      <div className="grid md:grid-cols-3 gap-4">
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="text-base">PRD-001: Assessment</CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="text-sm text-neutral-600 mb-3">
-                              User interview methodology and persona insights from Australian HR managers.
-                            </p>
-                            <Button variant="outline" size="sm" className="text-xs">
-                              <a href="/design-system/docs/prd-001-assessment.md" target="_blank">
-                                View PRD-001
-                              </a>
-                            </Button>
-                          </CardContent>
-                        </Card>
-
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="text-base">PRD-002: Lean Canvas</CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="text-sm text-neutral-600 mb-3">
-                              Business model canvas for Australian corporate experience marketplace.
-                            </p>
-                            <Button variant="outline" size="sm" className="text-xs">
-                              <a href="/design-system/docs/prd-002-lean-canvas.md" target="_blank">
-                                View PRD-002
-                              </a>
-                            </Button>
-                          </CardContent>
-                        </Card>
-
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="text-base">PRD-003: Persona Map</CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="text-sm text-neutral-600 mb-3">
-                              Detailed persona profiles including Sarah Chen (HR Manager) and secondary users.
-                            </p>
-                            <Button variant="outline" size="sm" className="text-xs">
-                              <a href="/design-system/docs/prd-003-persona-map.md" target="_blank">
-                                View PRD-003
-                              </a>
-                            </Button>
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </div>
-
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Current Implementation Status</CardTitle>
-                        <CardDescription>Australian marketplace features and technical progress</CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="grid md:grid-cols-2 gap-6">
-                          <div>
-                            <h4 className="font-semibold text-green-700 mb-3">✅ Completed Features</h4>
-                            <ul className="space-y-1 text-sm">
-                              <li>• Australian venue localization (6 locations)</li>
-                              <li>• Interactive company quiz with venue matching</li>
-                              <li>• Horizontal scrolling experience browser</li>
-                              <li>• 3-click booking system with cost estimation</li>
-                              <li>• Conversion-optimized micro-copy</li>
-                              <li>• Mobile-responsive design</li>
-                            </ul>
-                          </div>
-                          <div>
-                            <h4 className="font-semibold text-blue-700 mb-3">🔄 Next Sprint</h4>
-                            <ul className="space-y-1 text-sm">
-                              <li>• Supabase backend integration</li>
-                              <li>• Email automation system</li>
-                              <li>• Admin dashboard for HR managers</li>
-                              <li>• Payment integration (Stripe Australia)</li>
-                              <li>• A/B testing framework</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>

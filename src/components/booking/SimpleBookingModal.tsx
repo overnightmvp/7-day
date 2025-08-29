@@ -184,10 +184,11 @@ export function SimpleBookingModal({ experience, isOpen, onClose, onSuccess }: S
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Experience Image */}
             <div className="relative h-32 bg-neutral-200 rounded-lg overflow-hidden">
-              <img
-                src={experience.image_url}
-                alt={experience.title}
-                className="w-full h-full object-cover"
+              <div 
+                className="w-full h-full bg-cover bg-center"
+                style={{ backgroundImage: `url(${experience.image_url})` }}
+                role="img"
+                aria-label={experience.title}
               />
               <div className="absolute inset-0 bg-black/20"></div>
               <div className="absolute bottom-3 left-3 text-white">

@@ -147,7 +147,7 @@ export function CompanyQuiz() {
       
       setMatchedExperiences(matched.slice(0, 3)) // Top 3 matches
     }
-  }, [currentStep, quizData])
+  }, [currentStep, quizData, steps.length])
 
   const updateQuizData = (key: keyof QuizData, value: string) => {
     setQuizData(prev => ({ ...prev, [key]: value }))
@@ -203,10 +203,11 @@ export function CompanyQuiz() {
                     BEST MATCH
                   </div>
                 )}
-                <img
-                  src={exp.image_url}
-                  alt={exp.title}
-                  className="w-full sm:w-24 h-48 sm:h-24 object-cover rounded-lg flex-shrink-0 transition-transform hover:scale-105"
+                <div 
+                  className="w-full sm:w-24 h-48 sm:h-24 bg-cover bg-center rounded-lg flex-shrink-0 transition-transform hover:scale-105"
+                  style={{ backgroundImage: `url(${exp.image_url})` }}
+                  role="img"
+                  aria-label={exp.title}
                 />
                 <div className="flex-1">
                   <div className="flex items-start justify-between mb-2">
