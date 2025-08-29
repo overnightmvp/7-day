@@ -52,7 +52,7 @@ export function AuthModal({ isOpen, onClose, defaultEmail = '', onSuccess }: Aut
           window.location.reload() // Refresh to update auth state
         }, 1000)
       } else {
-        setMessage(result.error)
+        setMessage(result.error || 'Authentication failed')
       }
     } catch (error) {
       setMessage('Something went wrong. Please try again.')
