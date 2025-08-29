@@ -45,7 +45,7 @@ export function AuthModal({ isOpen, onClose, defaultEmail = '', onSuccess }: Aut
 
       if (result.success) {
         setUserSession(email)
-        setMessage(result.message)
+        setMessage(result.message || 'Authentication successful')
         onSuccess(result.user)
         setTimeout(() => {
           onClose()
