@@ -107,6 +107,5 @@ export {
   CardTitle, 
   CardDescription, 
   CardContent, 
-  CardFooter,
-  cardVariants 
+  CardFooter
 }
