@@ -375,8 +375,8 @@ export default function DesignSystemPage() {
                           type="password" 
                           error="Password must be at least 8 characters"
                         />
-                        <Input size="sm" placeholder="Small input" />
-                        <Input size="lg" placeholder="Large input" />
+                        <Input inputSize="sm" placeholder="Small input" />
+                        <Input inputSize="lg" placeholder="Large input" />
                       </div>
                     </div>
 

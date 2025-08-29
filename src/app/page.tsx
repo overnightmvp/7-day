@@ -476,14 +476,14 @@ export default function Home() {
                   placeholder="Your work email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  size="lg"
+                  inputSize="lg"
                 />
                 <Input
                   type="text"
                   placeholder="Company name"
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
-                  size="lg"
+                  inputSize="lg"
                 />
                 <Button
                   fullWidth

@@ -1,8 +1,8 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  size?: 'sm' | 'base' | 'lg'
+interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  inputSize?: 'sm' | 'base' | 'lg'
   variant?: 'default' | 'error' | 'success'
   label?: string
   error?: string
@@ -14,7 +14,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ 
     className, 
-    size = 'base', 
+    inputSize = 'base', 
     variant = 'default',
     type = "text",
     label,
@@ -65,9 +65,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className={cn(
               baseStyles,
               variantStyles[errorVariant],
-              sizeStyles[size],
-              leftIcon && "pl-10",
-              rightIcon && "pr-10",
+              sizeStyles[inputSize],
+              leftIcon ? "pl-10" : "",
+              rightIcon ? "pr-10" : "",
               className
             )}
             ref={ref}
