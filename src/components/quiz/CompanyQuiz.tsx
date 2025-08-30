@@ -191,34 +191,36 @@ export function CompanyQuiz() {
             </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 overflow-hidden">
             {matchedExperiences.map((exp, index) => (
               <div 
                 key={exp.id} 
-                className="flex flex-col sm:flex-row gap-4 p-4 bg-neutral-50 rounded-lg animate-in fade-in slide-in-from-bottom-4 duration-300"
+                className="relative flex flex-col sm:flex-row gap-4 p-4 bg-neutral-50 rounded-lg animate-in fade-in slide-in-from-bottom-4 duration-300 overflow-hidden"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {index === 0 && (
-                  <div className="absolute -top-2 -right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                    BEST MATCH
+                  <div className="inline-flex items-center gap-1 mb-2 sm:mb-0">
+                    <Badge variant="success" className="bg-green-500 text-white text-xs font-bold">
+                      ✨ BEST MATCH
+                    </Badge>
                   </div>
                 )}
                 <div 
-                  className="w-full sm:w-24 h-48 sm:h-24 bg-cover bg-center rounded-lg flex-shrink-0 transition-transform hover:scale-105"
+                  className="w-full sm:w-24 h-32 sm:h-24 bg-cover bg-center rounded-lg flex-shrink-0 transition-transform hover:scale-105"
                   style={{ backgroundImage: `url(${exp.image_url})` }}
                   role="img"
                   aria-label={exp.title}
                 />
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between mb-2">
-                    <h3 className="font-semibold text-neutral-900">{exp.title}</h3>
-                    <Badge variant={index === 0 ? "default" : "secondary"}>
-                      {index === 0 ? 'Best Match' : `Match ${index + 1}`}
+                    <h3 className="font-semibold text-neutral-900 truncate">{exp.title}</h3>
+                    <Badge variant={index === 0 ? "default" : "secondary"} className="ml-2 flex-shrink-0">
+                      {index === 0 ? 'Top Pick' : `Option ${index + 1}`}
                     </Badge>
                   </div>
-                  <p className="text-sm text-neutral-600 mb-2">{exp.location}</p>
-                  <p className="text-sm text-neutral-700 mb-3">{exp.description}</p>
-                  <div className="flex items-center justify-between">
+                  <p className="text-sm text-neutral-600 mb-2 truncate">{exp.location}</p>
+                  <p className="text-sm text-neutral-700 mb-3 line-clamp-2">{exp.description}</p>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                     <span className="font-semibold text-blue-600">
                       {formatCurrency(exp.price_per_night)}/night
                     </span>
@@ -233,25 +235,40 @@ export function CompanyQuiz() {
                   </div>
                   <Button 
                     size="sm" 
-                    className="mt-2 w-full"
+                    className="mt-3 w-full min-h-[44px] text-sm"
                     onClick={() => {
                       setSelectedExperience(exp)
                       setShowBookingModal(true)
                     }}
                   >
-                    Reserve This Venue
+                    <span className="hidden sm:inline">Reserve This Experience</span>
+                    <span className="sm:hidden">Reserve</span>
                   </Button>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="flex gap-4 mt-8 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-500">
-            <Button onClick={restartQuiz} variant="outline" className="flex-1 hover:scale-105 transition-transform">
-              Refine My Search
+          <div className="flex flex-col sm:flex-row gap-3 mt-8 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-500">
+            <Button 
+              onClick={restartQuiz} 
+              variant="outline" 
+              className="flex-1 min-h-[44px] hover:scale-105 transition-transform"
+            >
+              <span className="hidden sm:inline">Refine My Search</span>
+              <span className="sm:hidden">Refine Search</span>
             </Button>
-            <Button className="flex-1 hover:scale-105 transition-transform bg-gradient-to-r from-blue-500 to-blue-600">
-              Reserve My Top Match
+            <Button 
+              className="flex-1 min-h-[44px] hover:scale-105 transition-transform bg-gradient-to-r from-blue-500 to-blue-600"
+              onClick={() => {
+                if (matchedExperiences[0]) {
+                  setSelectedExperience(matchedExperiences[0])
+                  setShowBookingModal(true)
+                }
+              }}
+            >
+              <span className="hidden sm:inline">Reserve My Top Match</span>
+              <span className="sm:hidden">Reserve Top Pick</span>
             </Button>
           </div>
           

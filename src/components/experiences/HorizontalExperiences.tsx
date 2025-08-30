@@ -66,9 +66,10 @@ export function HorizontalExperiences() {
         {canScrollLeft && (
           <button
             onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full shadow-lg border border-neutral-200 flex items-center justify-center hover:bg-neutral-50 transition-colors"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg border border-neutral-200 flex items-center justify-center hover:bg-neutral-50 transition-colors touch-manipulation"
+            aria-label="Scroll left"
           >
-            <svg className="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
@@ -78,9 +79,10 @@ export function HorizontalExperiences() {
         {canScrollRight && (
           <button
             onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full shadow-lg border border-neutral-200 flex items-center justify-center hover:bg-neutral-50 transition-colors"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg border border-neutral-200 flex items-center justify-center hover:bg-neutral-50 transition-colors touch-manipulation"
+            aria-label="Scroll right"
           >
-            <svg className="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -89,13 +91,18 @@ export function HorizontalExperiences() {
         {/* Scrollable Container */}
         <div
           ref={scrollContainerRef}
-          className="flex gap-6 overflow-x-auto scroll-smooth pb-4 px-12"
+          className="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth pb-4 px-8 sm:px-12 relative"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
+          {/* Left Fade Gradient */}
+          <div className="absolute left-0 top-0 bottom-4 w-8 sm:w-12 bg-gradient-to-r from-neutral-50 via-neutral-50/80 to-transparent pointer-events-none z-20" />
+          
+          {/* Right Fade Gradient */}
+          <div className="absolute right-0 top-0 bottom-4 w-8 sm:w-12 bg-gradient-to-l from-neutral-50 via-neutral-50/80 to-transparent pointer-events-none z-20" />
           {experiences.map((experience) => (
             <Card 
               key={experience.id}
-              className="flex-shrink-0 w-80 overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              className="flex-shrink-0 w-72 sm:w-80 overflow-hidden hover:shadow-lg transition-shadow duration-300 relative z-10"
               padding="none"
             >
               {/* Image */}
@@ -166,13 +173,14 @@ export function HorizontalExperiences() {
                   <Button 
                     size="sm" 
                     fullWidth 
-                    className="mt-4"
+                    className="mt-4 min-h-[44px] touch-manipulation"
                     onClick={() => {
                       setSelectedExperience(experience)
                       setShowBookingModal(true)
                     }}
                   >
-                    Reserve This Experience
+                    <span className="hidden sm:inline">Reserve This Experience</span>
+                    <span className="sm:hidden">Reserve</span>
                   </Button>
                 </div>
               </CardContent>
@@ -182,7 +190,7 @@ export function HorizontalExperiences() {
 
         {/* Custom scrollbar hidden */}
         <style jsx>{`
-          .scrollable-container::-webkit-scrollbar {
+          div::-webkit-scrollbar {
             display: none;
           }
         `}</style>
@@ -190,8 +198,9 @@ export function HorizontalExperiences() {
 
       {/* View All Button */}
       <div className="text-center">
-        <Button variant="outline" size="lg">
-          Browse All {experiences.length} Venues
+        <Button variant="outline" size="lg" className="min-h-[44px] touch-manipulation">
+          <span className="hidden sm:inline">Browse All {experiences.length} Venues</span>
+          <span className="sm:hidden">View All Venues</span>
         </Button>
       </div>
       

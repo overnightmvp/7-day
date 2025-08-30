@@ -26,23 +26,32 @@ interface BookingFormData {
   specialRequests: string
 }
 
+interface QuizData {
+  teamSize: string
+  eventType: string
+  budget: string
+  location: string
+  vibe: string
+}
+
 interface SimpleBookingModalProps {
   experience: Experience | null
   isOpen: boolean
   onClose: () => void
   onSuccess: (booking: BookingFormData) => void
+  quizData?: QuizData
 }
 
-export function SimpleBookingModal({ experience, isOpen, onClose, onSuccess }: SimpleBookingModalProps) {
+export function SimpleBookingModal({ experience, isOpen, onClose, onSuccess, quizData }: SimpleBookingModalProps) {
   const [formData, setFormData] = useState<BookingFormData>({
     workEmail: '',
     companyName: '',
     contactName: '',
     phone: '',
-    teamSize: 8,
+    teamSize: quizData?.teamSize ? parseInt(quizData.teamSize.split('-')[0]) : 8,
     preferredDate: '',
     alternateDate: '',
-    specialRequests: ''
+    specialRequests: quizData ? `Event type: ${quizData.eventType}, Budget range: ${quizData.budget}, Preferred vibe: ${quizData.vibe}` : ''
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -147,43 +156,43 @@ export function SimpleBookingModal({ experience, isOpen, onClose, onSuccess }: S
   const estimatedCost = experience.price_per_night * Math.ceil(formData.teamSize / experience.max_guests)
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4">
-      <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-neutral-200 p-6 rounded-t-lg">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-60 flex items-center justify-center p-2 sm:p-4">
+      <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto relative z-70">
+        <div className="sticky top-0 bg-white border-b border-neutral-200 p-3 sm:p-6 rounded-t-lg z-10">
           <div className="flex items-start justify-between">
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-2">
-                <h2 className="text-2xl font-bold text-neutral-900">Reserve Your Experience</h2>
-                <Badge variant="secondary" className="bg-green-100 text-green-700 text-xs">
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
+                <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 truncate">Reserve Your Experience</h2>
+                <Badge variant="secondary" className="bg-green-100 text-green-700 text-xs flex-shrink-0 w-fit">
                   Available
                 </Badge>
               </div>
-              <div className="flex items-center gap-4 text-sm text-neutral-600">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-sm text-neutral-600">
                 <span className="flex items-center">
-                  <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 mr-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   </svg>
-                  {experience.location}
+                  <span className="truncate">{experience.location}</span>
                 </span>
-                <span>•</span>
-                <span>{formatCurrency(experience.price_per_night)}/night</span>
+                <span className="hidden sm:inline">•</span>
+                <span className="font-semibold">{formatCurrency(experience.price_per_night)}/night</span>
               </div>
             </div>
             <button
               onClick={onClose}
-              className="text-neutral-400 hover:text-neutral-600 ml-4"
+              className="text-neutral-400 hover:text-neutral-600 ml-2 sm:ml-4 p-2 -m-2 flex-shrink-0"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
         </div>
 
-        <CardContent className="p-6">
+        <CardContent className="p-3 sm:p-6">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Experience Image */}
-            <div className="relative h-32 bg-neutral-200 rounded-lg overflow-hidden">
+            <div className="relative h-24 sm:h-32 bg-neutral-200 rounded-lg overflow-hidden">
               <div 
                 className="w-full h-full bg-cover bg-center"
                 style={{ backgroundImage: `url(${experience.image_url})` }}
@@ -191,14 +200,14 @@ export function SimpleBookingModal({ experience, isOpen, onClose, onSuccess }: S
                 aria-label={experience.title}
               />
               <div className="absolute inset-0 bg-black/20"></div>
-              <div className="absolute bottom-3 left-3 text-white">
-                <h3 className="font-semibold text-lg">{experience.title}</h3>
-                <p className="text-sm opacity-90">{experience.description}</p>
+              <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 text-white pr-4">
+                <h3 className="font-semibold text-base sm:text-lg truncate">{experience.title}</h3>
+                <p className="text-xs sm:text-sm opacity-90 line-clamp-1 hidden sm:block">{experience.description}</p>
               </div>
             </div>
 
             {/* Contact Information */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
                 <label className="block text-sm font-medium text-neutral-700 mb-1">
                   Your work email *
@@ -269,7 +278,7 @@ export function SimpleBookingModal({ experience, isOpen, onClose, onSuccess }: S
             </div>
 
             {/* Event Details */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
                 <label className="block text-sm font-medium text-neutral-700 mb-1">
                   Team size *
@@ -319,9 +328,9 @@ export function SimpleBookingModal({ experience, isOpen, onClose, onSuccess }: S
                 <p className="text-xs text-neutral-500 mt-1">Increases booking success rate by 40%</p>
               </div>
 
-              <div className="bg-blue-50 p-4 rounded-lg">
+              <div className="bg-blue-50 p-3 sm:p-4 rounded-lg sm:col-span-2">
                 <div className="text-sm text-blue-700 font-semibold mb-1">Estimated Total</div>
-                <div className="text-2xl font-bold text-blue-800">
+                <div className="text-xl sm:text-2xl font-bold text-blue-800">
                   {formatCurrency(estimatedCost)}
                 </div>
                 <div className="text-xs text-blue-600">
@@ -378,21 +387,26 @@ export function SimpleBookingModal({ experience, isOpen, onClose, onSuccess }: S
                 fullWidth
                 size="lg"
                 disabled={isSubmitting}
-                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700"
+                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 min-h-[48px]"
               >
                 {isSubmitting ? (
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Submitting Inquiry...
+                    <span className="hidden sm:inline">Submitting Inquiry...</span>
+                    <span className="sm:hidden">Submitting...</span>
                   </div>
                 ) : (
-                  'Submit Booking Inquiry'
+                  <>
+                    <span className="hidden sm:inline">Submit Booking Inquiry</span>
+                    <span className="sm:hidden">Submit Inquiry</span>
+                  </>
                 )}
               </Button>
               
-              <div className="text-center text-xs text-neutral-500">
+              <div className="text-center text-xs text-neutral-500 px-2">
                 By submitting, you agree to receive venue details and booking information.
-                <br />
+                <br className="hidden sm:inline" />
+                <span className="sm:hidden"> </span>
                 No payment required • Free cancellation up to 48 hours
               </div>
             </div>
