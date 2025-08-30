@@ -9,6 +9,7 @@ export default function DesignSystemPage() {
 
   const sections = [
     { id: 'documentation', label: 'Documentation' },
+    { id: 'prd', label: 'Product Requirements' },
     { id: 'colors', label: 'Colors' },
     { id: 'typography', label: 'Typography' },
     { id: 'components', label: 'Components' },
@@ -44,7 +45,7 @@ export default function DesignSystemPage() {
           <div className="py-6">
             <h1 className="text-3xl font-bold text-neutral-900">7DAY Design System</h1>
             <p className="text-neutral-600 mt-2">
-              Complete component library and design guidelines for the 7DAY platform
+              Complete component library, design guidelines, and product requirements for the 7DAY Australian corporate experience marketplace
             </p>
           </div>
         </div>
@@ -151,32 +152,201 @@ export default function DesignSystemPage() {
                     <CardContent>
                       <div className="grid md:grid-cols-3 gap-4">
                         <a 
-                          href="/design-system/docs/prd-003-persona-map.md" 
-                          target="_blank"
-                          className="block p-4 bg-blue-50 rounded hover:bg-blue-100 transition-colors"
-                        >
-                          <div className="font-medium text-blue-900">Persona Map</div>
-                          <div className="text-sm text-blue-700">User research & personas</div>
-                        </a>
-                        <a 
-                          href="/design-system/docs/prompts-backlog.md" 
+                          href="/design-system/docs/production-status.md" 
                           target="_blank"
                           className="block p-4 bg-green-50 rounded hover:bg-green-100 transition-colors"
                         >
-                          <div className="font-medium text-green-900">Development History</div>
-                          <div className="text-sm text-green-700">Complete session backlog</div>
+                          <div className="font-medium text-green-900">Production Status</div>
+                          <div className="text-sm text-green-700">Live system deployment</div>
                         </a>
                         <a 
-                          href="/design-system/docs/user-flow-documentation.md" 
+                          href="/design-system/docs/deployment-guide.md" 
+                          target="_blank"
+                          className="block p-4 bg-blue-50 rounded hover:bg-blue-100 transition-colors"
+                        >
+                          <div className="font-medium text-blue-900">Deployment Guide</div>
+                          <div className="text-sm text-blue-700">Complete setup instructions</div>
+                        </a>
+                        <a 
+                          href="https://g.co/gemini/share/8f3b8b3e6f66" 
                           target="_blank"
                           className="block p-4 bg-purple-50 rounded hover:bg-purple-100 transition-colors"
                         >
-                          <div className="font-medium text-purple-900">User Flows</div>
-                          <div className="text-sm text-purple-700">Interaction patterns</div>
+                          <div className="font-medium text-purple-900">Gemini Chat</div>
+                          <div className="text-sm text-purple-700">Original development collaboration</div>
                         </a>
                       </div>
                     </CardContent>
                   </Card>
+                </div>
+              )}
+
+              {/* Product Requirements */}
+              {activeSection === 'prd' && (
+                <div>
+                  <h2 className="text-2xl font-bold mb-6">Product Requirements Documentation</h2>
+                  
+                  <div className="mb-8">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Foundation Documents</CardTitle>
+                        <CardDescription>
+                          Original product requirements that guided 7DAY development from concept to production
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-sm text-neutral-600 mb-4">
+                          These PRD documents capture the original prompts and vision that shaped 7DAY's evolution 
+                          into a live Australian corporate experience marketplace. Created in collaboration with 
+                          <a 
+                            href="https://g.co/gemini/share/8f3b8b3e6f66" 
+                            target="_blank" 
+                            className="text-blue-600 hover:text-blue-800 underline"
+                          >
+                            Gemini AI
+                          </a>.
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  <div className="grid lg:grid-cols-3 gap-6">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="text-lg">PRD-001</CardTitle>
+                        <CardDescription>Product Assessment Interview</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-3 text-sm">
+                          <div className="text-neutral-600">
+                            Two-sided marketplace specifications, business model, target market analysis, 
+                            and competitive positioning for Australian SMB market.
+                          </div>
+                          <div className="space-y-2">
+                            <div className="font-medium text-neutral-800">Key Topics:</div>
+                            <ul className="text-neutral-600 space-y-1 pl-4">
+                              <li>• SaaS subscription model ($50-200/month)</li>
+                              <li>• Australian SMB target (50-500 employees)</li>
+                              <li>• Premium experience curation</li>
+                              <li>• Mobile-first architecture</li>
+                            </ul>
+                          </div>
+                          <a 
+                            href="/design-system/docs/prd-001-product-assessment.md" 
+                            target="_blank"
+                            className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
+                          >
+                            View Document →
+                          </a>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="text-lg">PRD-002</CardTitle>
+                        <CardDescription>Technical Architecture</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-3 text-sm">
+                          <div className="text-neutral-600">
+                            Current system implementation, target architecture, database evolution, 
+                            and migration path from inquiry system to full marketplace.
+                          </div>
+                          <div className="space-y-2">
+                            <div className="font-medium text-neutral-800">Key Topics:</div>
+                            <ul className="text-neutral-600 space-y-1 pl-4">
+                              <li>• Next.js + Supabase foundation</li>
+                              <li>• Authentication & payment integration</li>
+                              <li>• Real-time booking system</li>
+                              <li>• Mobile PWA implementation</li>
+                            </ul>
+                          </div>
+                          <a 
+                            href="/design-system/docs/prd-002-technical-architecture.md" 
+                            target="_blank"
+                            className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
+                          >
+                            View Document →
+                          </a>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="text-lg">PRD-003</CardTitle>
+                        <CardDescription>User Research & Market Validation</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-3 text-sm">
+                          <div className="text-neutral-600">
+                            Primary personas (Sarah Chen - HR Manager), Australian market analysis, 
+                            customer validation framework, and success metrics.
+                          </div>
+                          <div className="space-y-2">
+                            <div className="font-medium text-neutral-800">Key Topics:</div>
+                            <ul className="text-neutral-600 space-y-1 pl-4">
+                              <li>• User personas and pain points</li>
+                              <li>• Market size analysis ($2.1B TAM)</li>
+                              <li>• Customer acquisition strategy</li>
+                              <li>• A/B testing framework</li>
+                            </ul>
+                          </div>
+                          <a 
+                            href="/design-system/docs/prd-003-user-research-validation.md" 
+                            target="_blank"
+                            className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
+                          >
+                            View Document →
+                          </a>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  <div className="mt-8">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Implementation Gap Analysis</CardTitle>
+                        <CardDescription>Current state vs original PRD vision</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <h4 className="font-semibold text-green-700 mb-3">✅ Successfully Implemented</h4>
+                            <ul className="space-y-2 text-sm">
+                              <li>• Australian market localization (AUD, venues, business context)</li>
+                              <li>• Mobile-first responsive design with touch optimization</li>
+                              <li>• Company assessment quiz with venue matching</li>
+                              <li>• Clean Next.js + Supabase + TypeScript architecture</li>
+                              <li>• Live production deployment on Vercel</li>
+                              <li>• Curated premium venue selection (6 experiences)</li>
+                            </ul>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-orange-700 mb-3">🔄 Development Required</h4>
+                            <ul className="space-y-2 text-sm">
+                              <li>• Subscription billing system (currently inquiry-based)</li>
+                              <li>• Real-time booking with instant confirmation</li>
+                              <li>• Venue partner onboarding and management portal</li>
+                              <li>• Production-ready authentication system</li>
+                              <li>• Payment processing (Stripe Australia integration)</li>
+                              <li>• Two-sided marketplace vs current lead generation</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                          <div className="font-medium text-blue-900 mb-2">Complexity Assessment</div>
+                          <div className="text-sm text-blue-800">
+                            <strong>Current System:</strong> Solid foundation achieving core user value (95% time savings for HR managers)<br/>
+                            <strong>Full Marketplace:</strong> Medium-high complexity requiring 8-12 weeks additional development<br/>
+                            <strong>Recommendation:</strong> Validate current inquiry model, then evolve to full self-service platform
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
                 </div>
               )}
 
