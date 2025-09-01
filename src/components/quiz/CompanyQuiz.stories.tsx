@@ -56,6 +56,7 @@ type Story = StoryObj<typeof meta>
 
 export const InteractiveQuiz: Story = {
   name: '📝 Complete Quiz Experience',
+  args: {},
   render: () => <CompanyQuiz />,
   parameters: {
     docs: {
@@ -77,7 +78,8 @@ Complete interactive quiz experience showing the full 5-step assessment flow:
 }
 
 export const MobileQuizFlow: Story = {
-  name: '📱 Mobile Quiz Experience', 
+  name: '📱 Mobile Quiz Experience',
+  args: {},
   render: () => <CompanyQuiz />,
   parameters: {
     viewport: {
@@ -93,6 +95,7 @@ export const MobileQuizFlow: Story = {
 
 export const QuizResultsDemo: Story = {
   name: '🎯 Venue Matching Results',
+  args: {},
   render: () => {
     // Create a mock component showing results state
     return (
