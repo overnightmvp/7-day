@@ -108,7 +108,7 @@ export function SimpleBookingModal({ experience, isOpen, onClose, onSuccess, qui
       const { supabase } = await import('@/lib/supabase')
       
       // Create booking inquiry in database
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('booking_inquiries')
         .insert({
           work_email: formData.workEmail,
@@ -124,8 +124,6 @@ export function SimpleBookingModal({ experience, isOpen, onClose, onSuccess, qui
           estimated_cost: estimatedCost,
           status: 'pending'
         })
-        .select()
-        .single()
 
       if (error) {
         console.error('Booking submission error:', error)

@@ -55,6 +55,7 @@ CREATE INDEX idx_bookings_status ON bookings(status);
 ALTER TABLE companies ENABLE ROW LEVEL SECURITY;
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE bookings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE booking_inquiries ENABLE ROW LEVEL SECURITY;
 
 -- RLS Policies (basic - you'll need to customize based on auth)
 CREATE POLICY "Users can view their own company" ON companies
@@ -73,3 +74,13 @@ CREATE POLICY "Users can view their own bookings" ON bookings
             SELECT id FROM users WHERE email = auth.email()
         )
     );
+
+-- Booking inquiries policies (secure admin access)
+CREATE POLICY "Admin only access to booking inquiries" ON booking_inquiries
+    FOR SELECT USING (auth.email() = 'overnightmvp@gmail.com');
+
+CREATE POLICY "Admin can update booking inquiries" ON booking_inquiries
+    FOR UPDATE USING (auth.email() = 'overnightmvp@gmail.com');
+
+CREATE POLICY "Allow public inserts for booking form" ON booking_inquiries
+    FOR INSERT WITH CHECK (true);

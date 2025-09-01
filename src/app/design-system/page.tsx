@@ -114,6 +114,37 @@ export default function DesignSystemPage() {
                     </Card>
                   </div>
 
+                  <div className="mb-8">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                          🛠️ Admin Panel
+                          <Badge variant="success" size="sm">Live</Badge>
+                        </CardTitle>
+                        <CardDescription>Lead management dashboard for booking inquiries</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <a 
+                          href="/admin" 
+                          target="_blank"
+                          className="block p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-lg hover:from-green-100 hover:to-green-200 transition-all duration-200 border border-green-200"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <div className="font-semibold text-green-900">Lead Management Dashboard</div>
+                              <div className="text-sm text-green-700">View booking inquiries, update status, manage leads</div>
+                            </div>
+                            <div className="text-green-600">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                              </svg>
+                            </div>
+                          </div>
+                        </a>
+                      </CardContent>
+                    </Card>
+                  </div>
+
                   <div className="grid md:grid-cols-2 gap-6 mb-8">
                     <Card>
                       <CardHeader>
@@ -153,6 +184,14 @@ export default function DesignSystemPage() {
                           >
                             <div className="font-medium">Badge</div>
                             <div className="text-sm text-neutral-600">Status indicators, labels, icons</div>
+                          </a>
+                          <a 
+                            href="/design-system/docs/admin-panel.md" 
+                            target="_blank"
+                            className="block p-3 bg-neutral-50 rounded hover:bg-neutral-100 transition-colors"
+                          >
+                            <div className="font-medium">Admin Panel</div>
+                            <div className="text-sm text-neutral-600">Lead management, security setup, workflow</div>
                           </a>
                         </div>
                       </CardContent>

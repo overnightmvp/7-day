@@ -36,9 +36,17 @@ Corporate experience marketplace MVP built with Next.js, TypeScript, and Supabas
 **Development:**
 ```bash
 npm run dev          # Start development server with turbo
-npm run build        # Build production bundle
+npm run build        # Build production bundle (includes Storybook)
 npm run start        # Start production server
 npm run lint         # Run ESLint checks
+npm run dev:docs     # Build Storybook + start dev server
+```
+
+**Admin Panel:**
+```bash
+# Access admin dashboard at /admin
+# Lead management: View booking inquiries, update status
+# Security: RLS disabled for MVP (enable with real auth later)
 ```
 
 **Setup:**

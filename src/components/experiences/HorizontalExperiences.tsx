@@ -120,7 +120,7 @@ export function HorizontalExperiences() {
                 </div>
                 <div className="absolute top-3 left-3">
                   <Badge variant="secondary" className="bg-orange-100 text-orange-700 text-xs">
-                    {Math.floor(Math.random() * 3) + 2} dates left in March
+                    {2 + (experience.id.length % 3)} dates left in March
                   </Badge>
                 </div>
               </div>
