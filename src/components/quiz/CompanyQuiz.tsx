@@ -48,7 +48,11 @@ function QuizStep({ title, options, selected, onSelect }: QuizStepProps) {
   )
 }
 
-export function CompanyQuiz() {
+interface CompanyQuizProps {
+  onComplete?: (completed: boolean) => void
+}
+
+export function CompanyQuiz({ onComplete }: CompanyQuizProps = {}) {
   const [currentStep, setCurrentStep] = useState(0)
   const [quizData, setQuizData] = useState<QuizData>({
     teamSize: '',
@@ -146,8 +150,11 @@ export function CompanyQuiz() {
       })
       
       setMatchedExperiences(matched.slice(0, 3)) // Top 3 matches
+      onComplete?.(true) // Notify parent that quiz is completed
+    } else {
+      onComplete?.(false) // Notify parent that quiz is in progress
     }
-  }, [currentStep, quizData, steps.length])
+  }, [currentStep, quizData, steps.length, onComplete])
 
   const updateQuizData = (key: keyof QuizData, value: string) => {
     setQuizData(prev => ({ ...prev, [key]: value }))
@@ -175,13 +182,14 @@ export function CompanyQuiz() {
       vibe: ''
     })
     setMatchedExperiences([])
+    onComplete?.(false) // Notify parent that quiz restarted
   }
 
   if (currentStep === steps.length) {
     // Results view
     return (
       <Card className="w-full">
-        <CardContent className="p-8">
+        <CardContent className="p-4 sm:p-6 lg:p-8">
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-neutral-900 mb-2">
               Perfect! Here are your matched experiences

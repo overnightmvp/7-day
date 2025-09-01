@@ -154,8 +154,8 @@ export function SimpleBookingModal({ experience, isOpen, onClose, onSuccess, qui
   const estimatedCost = experience.price_per_night * Math.ceil(formData.teamSize / experience.max_guests)
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-60 flex items-center justify-center p-2 sm:p-4">
-      <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto relative z-70">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center p-2 sm:p-4">
+      <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto relative z-[10000]">
         <div className="sticky top-0 bg-white border-b border-neutral-200 p-3 sm:p-6 rounded-t-lg z-10">
           <div className="flex items-start justify-between">
             <div className="flex-1 min-w-0">

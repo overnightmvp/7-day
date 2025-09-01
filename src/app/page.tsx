@@ -14,6 +14,7 @@ export default function Home() {
   const [companyName, setCompanyName] = useState('')
   const [userType, setUserType] = useState<'company' | 'employee' | null>(null)
   const [showDemo, setShowDemo] = useState(false)
+  const [quizCompleted, setQuizCompleted] = useState(false)
 
   // Smart email detection
   useEffect(() => {
@@ -55,9 +56,9 @@ export default function Home() {
           </div>
           
           {/* 2-Column Quiz Section */}
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className={quizCompleted ? "" : "grid lg:grid-cols-2 gap-12 items-start"}>
             {/* Left Column - Quiz */}
-            <div>
+            <div className={quizCompleted ? "max-w-6xl mx-auto" : ""}>
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-neutral-900 mb-2">
                   Find Your Perfect Team Experience
@@ -66,10 +67,11 @@ export default function Home() {
                   Answer 5 quick questions and get personalized venue recommendations
                 </p>
               </div>
-              <CompanyQuiz />
+              <CompanyQuiz onComplete={(completed) => setQuizCompleted(completed)} />
             </div>
             
             {/* Right Column - Value Props */}
+            {!quizCompleted && (
             <div className="space-y-8">
               <div className="bg-blue-50 rounded-2xl p-8">
                 <h3 className="text-xl font-bold text-neutral-900 mb-4">
@@ -125,6 +127,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
+            )}
           </div>
         </div>
       </section>
