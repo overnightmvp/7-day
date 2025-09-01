@@ -83,6 +83,37 @@ export default function DesignSystemPage() {
                 <div>
                   <h2 className="text-2xl font-bold mb-6">Component Documentation</h2>
                   
+                  <div className="mb-8">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                          📚 Interactive Component Library
+                          <Badge variant="primary" size="sm">New</Badge>
+                        </CardTitle>
+                        <CardDescription>Explore all components with live examples and code snippets</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <a 
+                          href="/storybook/index.html" 
+                          target="_blank"
+                          className="block p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg hover:from-blue-100 hover:to-blue-200 transition-all duration-200 border border-blue-200"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <div className="font-semibold text-blue-900">Storybook Documentation</div>
+                              <div className="text-sm text-blue-700">Interactive component playground with Australian corporate examples</div>
+                            </div>
+                            <div className="text-blue-600">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                              </svg>
+                            </div>
+                          </div>
+                        </a>
+                      </CardContent>
+                    </Card>
+                  </div>
+
                   <div className="grid md:grid-cols-2 gap-6 mb-8">
                     <Card>
                       <CardHeader>
